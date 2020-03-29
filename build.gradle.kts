@@ -1,3 +1,5 @@
+import io.johnsonlee.gradle.dsl.*
+
 buildscript {
     repositories {
         mavenLocal()
@@ -24,6 +26,8 @@ repositories {
     mavenCentral()
     jcenter()
 }
+
+apply(from = file("gradle/test.gradle.kts"))
 
 allprojects {
     apply(plugin = "java-library")
@@ -133,4 +137,3 @@ nexusStaging {
     delayBetweenRetriesInMillis = 3000
 }
 
-fun Project.signing(conf: SigningExtension.() -> Unit) = (this as ExtensionAware).extensions.configure("signing", conf)
